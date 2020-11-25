@@ -53,7 +53,8 @@ public class ClientsService {
 	public ClientsTO save(ClientsTO client){	
 		if (Strings.isEmpty(client.getId())) {
 			client.setCreatedBy("teste");
-			client.setCreatedAt(LocalDateTime.now().toString());
+			// client.setCreatedAt(LocalDateTime.now().toString());
+			client.setCreatedAt("2020-11-25T10:00:00.0000");
 		}
 		client.setModifiedBy("teste");
 		client.setCreatedAt(LocalDateTime.now().toString());
