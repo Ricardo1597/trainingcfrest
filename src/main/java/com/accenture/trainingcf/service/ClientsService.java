@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.accenture.trainingcf.domain.ClientsEntity;
+import com.accenture.trainingcf.domain.ProductsEntity;
 import com.accenture.trainingcf.dto.ClientsTO;
+import com.accenture.trainingcf.dto.ProductsTO;
 import com.accenture.trainingcf.repository.ClientsRepository;
 
 @Service
@@ -53,15 +55,13 @@ public class ClientsService {
 	public ClientsTO save(ClientsTO client){	
 		if (Strings.isEmpty(client.getId())) {
 			client.setCreatedBy("teste");
-			// client.setCreatedAt(LocalDateTime.now().toString());
-			client.setCreatedAt("2020-11-25T10:00:00.0000");
+			client.setCreatedAt(LocalDateTime.now().toString());
 		}
 		client.setModifiedBy("teste");
-		client.setCreatedAt(LocalDateTime.now().toString());
+		client.setModifiedAt(LocalDateTime.now().toString());
 		ClientsEntity savedEntity = rep.save(mapper.map(client, ClientsEntity.class));
 		return mapper.map(savedEntity, ClientsTO.class);
 	}
-	
 	
 	public boolean delete(String id){
 		if(rep.existsById(id)){

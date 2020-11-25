@@ -6,6 +6,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +29,8 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.accenture.trainingcf.dto.ProductsTO;
+import com.accenture.trainingcf.dto.SalesOrderItemTO;
 import com.accenture.trainingcf.dto.SalesOrderTO;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,8 +49,22 @@ public class SalesOrderTest {
 	private static SalesOrderTO salesOrder;
 
 	private static void getSalesOrderTest() {
+		List<SalesOrderItemTO> listOfItems = new ArrayList<SalesOrderItemTO>();
+		ProductsTO product1 = new ProductsTO();
+		product1.setName("Product Test");
+		product1.setManufacturer("MAnufacturerTest");
+		product1.setBasePrice(20.58);
+		product1.setSalesPrice(20.58);
+		product1.setQuantity(3);
+		
+		SalesOrderItemTO item1 = new SalesOrderItemTO();
+		item1.setStatus("D");
+//		item1.setProduct(product1);
+		listOfItems.add(item1);
+		
 		SalesOrderTO salesOrdersTO = new SalesOrderTO();
 		salesOrdersTO.setStatus("D");
+		salesOrdersTO.setItems(listOfItems);
 		salesOrder = salesOrdersTO;
 	}
 
@@ -80,6 +98,12 @@ public class SalesOrderTest {
 
 		assertThat(objResult.getId()).isNotEmpty();
 		salesOrder.setId(objResult.getId());
+//		salesOrder.setCreatedAt(objResult.getCreatedAt());
+//		salesOrder.setCreatedBy(objResult.getCreatedBy());
+//		salesOrder.setModifiedAt(objResult.getModifiedAt());
+//		salesOrder.setModifiedBy(objResult.getModifiedBy());
+//		salesOrder.setItems(objResult.getItems());
+		
 	}
 
 	@Test
@@ -142,7 +166,10 @@ public class SalesOrderTest {
 		final SalesOrderTO objResult = mapper.readValue(result, SalesOrderTO.class);
 		assertThat(objResult.getId()).isEqualTo(salesOrder.getId());
 
+//		assertThat(objResult.getItems().size()).isGreaterThan(0);
+//		assertThat(objResult.getItems().get(0).getProduct().getQuantity()).isEqualTo(123);
 	}
+	
 	@Test
 	public void az_deleteSalesOrder() throws UnsupportedEncodingException, Exception {
 

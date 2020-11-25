@@ -54,7 +54,7 @@ public class UsersService {
 			user.setCreatedAt(LocalDateTime.now().toString());
 		}
 		user.setModifiedBy("teste");
-		user.setCreatedAt(LocalDateTime.now().toString());	
+		user.setModifiedAt(LocalDateTime.now().toString());	
 		UsersEntity savedEntity = rep.save(mapper.map(user, UsersEntity.class));
 		return mapper.map(savedEntity, UsersTO.class);
 	}

@@ -59,7 +59,7 @@ public class ProductsService {
 			product.setCreatedAt(LocalDateTime.now().toString());
 		}
 		product.setModifiedBy("teste");
-		product.setCreatedAt(LocalDateTime.now().toString());
+		product.setModifiedAt(LocalDateTime.now().toString());
 		ProductsEntity savedEntity = rep.save(mapper.map(product, ProductsEntity.class));
 		return mapper.map(savedEntity, ProductsTO.class);
 	}

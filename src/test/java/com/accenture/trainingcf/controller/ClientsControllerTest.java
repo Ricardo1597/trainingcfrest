@@ -35,7 +35,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @RunWith(SpringJUnit4ClassRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-
 public class ClientsControllerTest {
 	@Autowired
 	private ClientsController controller;
@@ -83,12 +82,16 @@ public class ClientsControllerTest {
 
 		assertThat(objResult.getId()).isNotEmpty();
 		client.setId(objResult.getId());
+//		client.setCreatedAt(objResult.getCreatedAt());
+//		client.setCreatedBy(objResult.getCreatedBy());
+//		client.setModifiedAt(objResult.getModifiedAt());
+//		client.setModifiedBy(objResult.getModifiedBy());
 	}
 
 	@Test
 	public void ab_changeClient() throws UnsupportedEncodingException, Exception {
 
-		String newName = "Produto Teste Alterado";
+		String newName = "Client Name Alterado";
 		client.setName(newName);
 		final byte[] clientAsByteArray = mapper.writeValueAsBytes(client);
 

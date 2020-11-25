@@ -82,9 +82,14 @@ public class ProductsControllerTest {
 		assertThat(result).isNotEmpty();
 
 		final ProductsTO objResult = mapper.readValue(result, ProductsTO.class);
+		
 
 		assertThat(objResult.getId()).isNotEmpty();
 		product.setId(objResult.getId());
+//		product.setCreatedAt(objResult.getCreatedAt());
+//		product.setCreatedBy(objResult.getCreatedBy());
+//		product.setModifiedAt(objResult.getModifiedAt());
+//		product.setModifiedBy(objResult.getModifiedBy());
 	}
 
 	@Test

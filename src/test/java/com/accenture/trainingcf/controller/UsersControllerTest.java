@@ -35,7 +35,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @RunWith(SpringJUnit4ClassRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-
 public class UsersControllerTest {
 	@Autowired
 	private UsersController controller;
@@ -81,12 +80,16 @@ public class UsersControllerTest {
 
 		assertThat(objResult.getId()).isNotEmpty();
 		user.setId(objResult.getId());
+//		user.setCreatedAt(objResult.getCreatedAt());
+//		user.setCreatedBy(objResult.getCreatedBy());
+//		user.setModifiedAt(objResult.getModifiedAt());
+//		user.setModifiedBy(objResult.getModifiedBy());
 	}
 
 	@Test
 	public void ab_changeUser() throws UnsupportedEncodingException, Exception {
 
-		String newName = "Produto Teste Alterado";
+		String newName = "User Name Alterado";
 		user.setName(newName);
 		final byte[] userAsByteArray = mapper.writeValueAsBytes(user);
 

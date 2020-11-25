@@ -9,6 +9,7 @@ public class SalesOrderItemTO {
 	private String createdBy;
 	private String modifiedAt;
 	private String modifiedBy;
+	
 	public String getId() {
 		return Id;
 	}

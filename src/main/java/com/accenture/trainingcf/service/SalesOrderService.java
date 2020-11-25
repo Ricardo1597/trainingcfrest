@@ -59,22 +59,26 @@ public class SalesOrderService {
 			salesOrderEntity.setCreatedAt(LocalDateTime.now());
 		}
 		salesOrderEntity.setModifiedBy("teste");
-		salesOrderEntity.setCreatedAt(LocalDateTime.now());
+		salesOrderEntity.setModifiedAt(LocalDateTime.now());
 		
 		SalesOrderEntity savedEntity = rep.save(salesOrderEntity);
 		
 		salesOrderEntity.getItems().stream().forEach(item -> item.setSalesOrder(savedEntity));
+			
+		
 		itemsRep.saveAll(salesOrderEntity.getItems());
 		
 		return mapper.map(savedEntity, SalesOrderTO.class);
 	}
 	
 	public boolean delete(String id){
-		if(rep.existsById(id)){
+		try {
 			rep.deleteById(id);
 			return true;
 		}
-		return false;
+		catch(Exception e){
+			return false;
+		}
 	}
 
 }
