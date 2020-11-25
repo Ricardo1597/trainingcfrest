@@ -63,7 +63,9 @@ public class SalesOrderService {
 		
 		SalesOrderEntity savedEntity = rep.save(salesOrderEntity);
 		
-		salesOrderEntity.getItems().stream().forEach(item -> item.setSalesOrder(savedEntity));
+		salesOrderEntity.getItems().stream().forEach(item -> {
+			item.setSalesOrder(savedEntity);
+		});
 			
 		
 		itemsRep.saveAll(salesOrderEntity.getItems());

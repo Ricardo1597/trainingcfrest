@@ -59,7 +59,7 @@ public class SalesOrderTest {
 		
 		SalesOrderItemTO item1 = new SalesOrderItemTO();
 		item1.setStatus("D");
-//		item1.setProduct(product1);
+		item1.setProduct(product1);
 		listOfItems.add(item1);
 		
 		SalesOrderTO salesOrdersTO = new SalesOrderTO();

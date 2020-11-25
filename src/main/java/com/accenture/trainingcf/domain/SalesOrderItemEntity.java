@@ -2,6 +2,7 @@ package com.accenture.trainingcf.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class SalesOrderItemEntity {
 //	@Column(name = "\"PRODUCT_ID\"")
 //	private ProductsEntity productId;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "\"PRODUCT_ID\"")
 	private ProductsEntity product;
 	
